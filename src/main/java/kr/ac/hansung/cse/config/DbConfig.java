@@ -39,7 +39,8 @@ public class DbConfig {
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/productdb" +
+        String dbHost = System.getenv("DB_HOST")!= null ? System.getenv("DB_HOST") : "localhost";
+        ds.setUrl("jdbc:mysql://" + dbHost +":3306/productdb" +
                   "?useSSL=false" +
                   "&allowPublicKeyRetrieval=true" +
                   "&serverTimezone=Asia/Seoul" +
